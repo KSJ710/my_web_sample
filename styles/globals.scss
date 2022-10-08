@@ -5,6 +5,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
 
+$main-color: #007B43;
+
 html,
 body {
   padding: 0;
@@ -15,4 +17,14 @@ body {
     "Hiragino Sans",
     Meiryo,
     sans-serif;
+}
+
+@layer components {
+  .label_yellow {
+    @apply mb-1 block text-xl font-black text-accent underline decoration-[4px] decoration-main  underline-offset-4;
+  }
+
+  .border_green {
+    border-bottom: 1px solid $main-color;
+  }
 }

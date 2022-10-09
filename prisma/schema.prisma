@@ -9,33 +9,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model AdminProfile {
+  id      Int     @id @default(autoincrement())
+  bio     String?
+  admin   Admin   @relation(fields: [adminId], references: [id])
+  adminId Int     @unique
+
+  @@map("admin_profiles")
+}
+
+model Admin {
+  id            Int           @id @default(autoincrement())
+  email         String        @unique
+  name          String?
+  admin_profile AdminProfile?
+  Post          Post[]
+
+  @@map("admins")
+}
 
 model Post {
   id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   title     String   @db.VarChar(255)
   content   String?
   published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
+  author    Admin    @relation(fields: [authorId], references: [id])
   authorId  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  @@map("posts")
 }
 
-model UserProfile {
+model Profile {
   id     Int     @id @default(autoincrement())
   bio    String?
   user   User    @relation(fields: [userId], references: [id])
   userId Int     @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  @@map("profiles")
 }
 
 model User {
   id      Int      @id @default(autoincrement())
   email   String   @unique
   name    String?
-  posts   Post[]
   profile Profile?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  @@map("users")
 }

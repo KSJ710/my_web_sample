@@ -1,7 +1,0 @@
-@tailwind components;
-
-@layer components {
-  .label-yellow {
-    @apply mb-1 block text-xl font-black text-accent underline decoration-[4px] decoration-main  underline-offset-2;
-  }
-}

@@ -2,12 +2,22 @@
 
 model MRole {
   id        Int      @id @default(autoincrement())
-  name      String?
+  name      String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
   users     User[]
-  createdAt DateTime   @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
   @@map("m_roles")
+}
+
+model MTag {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  posts     PostBelongToTag[]
+
+  @@map("m_tags")
 }
 
 //******** master.prisma end *********

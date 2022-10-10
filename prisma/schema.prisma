@@ -13,12 +13,22 @@ datasource db {
 
 model MRole {
   id        Int      @id @default(autoincrement())
-  name      String?
-  users     User[]
+  name      String
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  users     User[]
 
   @@map("m_roles")
+}
+
+model MTag {
+  id        Int               @id @default(autoincrement())
+  name      String
+  createdAt DateTime          @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime          @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  posts     PostBelongToTag[]
+
+  @@map("m_tags")
 }
 
 //******** master.prisma end *********
@@ -92,14 +102,29 @@ model VerificationToken {
 
 //******** nextauth.prisma end *********
 
-model Post {
+model PostBelongToTag {
   id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  authorId  String   @map("author_id")
+  postId    Int      @map("post_id")
+  tagId     Int      @map("tag_id")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  posts Post @relation(fields: [postId], references: [id])
+  tags  MTag @relation(fields: [tagId], references: [id])
+
+  @@map("post_belong_to_tag")
+}
+
+model Post {
+  id        Int               @id @default(autoincrement())
+  title     String            @db.VarChar(255)
+  linkPath  String            @map("link_path")
+  imagePath String?           @map("image_path")
+  published Boolean           @default(false)
+  authorId  String            @map("author_id")
+  createdAt DateTime          @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime          @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  tags      PostBelongToTag[]
 
   author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
 

@@ -1,0 +1,11 @@
+model PostBelongToTag {
+  id        Int      @id @default(autoincrement())
+  postId    Int      @map("post_id")
+  tagId     Int      @map("tag_id")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  posts     Post   @relation(fields: [postId], references: [id])
+  tags      MTag   @relation(fields: [tagId], references: [id])
+  @@map("post_belong_to_tag")
+}

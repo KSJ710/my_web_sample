@@ -9,6 +9,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 //******** master.prisma start *********
 
 model MRole {
@@ -22,10 +23,10 @@ model MRole {
 }
 
 model MTag {
-  id        Int               @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
-  createdAt DateTime          @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime          @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
   posts     PostBelongToTag[]
 
   @@map("m_tags")
@@ -33,26 +34,42 @@ model MTag {
 
 //******** master.prisma end *********
 
+model Member {
+  id                Int         @id @default(autoincrement())
+  name              String
+  email             String      @unique
+  password          String
+  rememberToken     String?     @map("remember_token")
+  rememberExpiresAt DateTime?   @map("remember_expires_at") @db.Timestamptz
+  confirmToken      String?     @map("confirm_token")
+  confirmExpiresAt  DateTime?   @map("confirm_expires_at") @db.Timestamptz
+  confirmStatus     String      @map("confirm_status") @db.Char(1) // 0:未確認 1:確認済
+  image             String?
+  createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("members")
+}
+
 //******** nextauth.prisma start *********
 
 model Account {
-  id                String   @id @default(cuid())
-  userId            String   @map("user_id")
-  type              String
-  provider          String
-  providerAccountId String   @map("provider_account_id")
-  refresh_token     String?  @db.Text
-  access_token      String?  @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?  @db.Text
-  session_state     String?
-  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt         DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  id                 String  @id @default(cuid())
+  userId             String  @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
+  createdAt          DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt          DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
@@ -65,8 +82,7 @@ model Session {
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt    DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@map("sessions")
 }
 
@@ -81,20 +97,19 @@ model User {
   posts         Post[]
   accounts      Account[]
   sessions      Session[]
-  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
-  role MRole @relation(fields: [roleId], references: [id])
-
+  role          MRole    @relation(fields: [roleId], references: [id])
   @@map("users")
 }
 
 model VerificationToken {
   identifier String
-  token      String   @unique
+  token      String     @unique
   expires    DateTime
-  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  createdAt  DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt  DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
   @@unique([identifier, token])
   @@map("verificationtokens")
@@ -109,24 +124,23 @@ model PostBelongToTag {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
-  posts Post @relation(fields: [postId], references: [id])
-  tags  MTag @relation(fields: [tagId], references: [id])
-
+  posts     Post   @relation(fields: [postId], references: [id])
+  tags      MTag   @relation(fields: [tagId], references: [id])
   @@map("post_belong_to_tag")
 }
 
 model Post {
-  id        Int               @id @default(autoincrement())
-  title     String            @db.VarChar(255)
-  linkPath  String            @map("link_path")
-  imagePath String?           @map("image_path")
-  published Boolean           @default(false)
-  authorId  String            @map("author_id")
-  createdAt DateTime          @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime          @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  linkPath  String   @map("link_path")
+  imagePath String?  @map("image_path")
+  published Boolean  @default(false)
+  authorId  String   @map("author_id")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
   tags      PostBelongToTag[]
 
-  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   @@map("posts")
 }
@@ -138,7 +152,7 @@ model Profile {
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("profiles")
 }

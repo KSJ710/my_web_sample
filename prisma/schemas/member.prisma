@@ -1,0 +1,16 @@
+model Member {
+  id                Int         @id @default(autoincrement())
+  name              String
+  email             String      @unique
+  password          String
+  rememberToken     String?     @map("remember_token")
+  rememberExpiresAt DateTime?   @map("remember_expires_at") @db.Timestamptz
+  confirmToken      String?     @map("confirm_token")
+  confirmExpiresAt  DateTime?   @map("confirm_expires_at") @db.Timestamptz
+  confirmStatus     String      @map("confirm_status") @db.Char(1) // 0:未確認 1:確認済
+  image             String?
+  createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("members")
+}

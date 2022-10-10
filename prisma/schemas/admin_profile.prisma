@@ -1,8 +1,0 @@
-model AdminProfile {
-  id      Int     @id @default(autoincrement())
-  bio     String?
-  admin   Admin   @relation(fields: [adminId], references: [id])
-  adminId Int     @unique
-
-  @@map("admin_profiles")
-}

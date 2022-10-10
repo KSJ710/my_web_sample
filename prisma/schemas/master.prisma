@@ -1,0 +1,13 @@
+//******** master.prisma start *********
+
+model MRole {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  users     User[]
+  createdAt DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("m_roles")
+}
+
+//******** master.prisma end *********

@@ -1,8 +1,0 @@
-model Admin {
-  id            Int      @id @default(autoincrement())
-  email         String   @unique
-  name          String?
-  admin_profile AdminProfile?
-
-  @@map("admins")
-}

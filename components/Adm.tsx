@@ -6,7 +6,7 @@ export default function Adm(): JSX.Element {
     <article className="m-auto max-w-[80%] p-[48px]">
       <h1>記事一覧</h1>
       <p>選択中タグ：</p>
-      <hr style={{}} />
+      <hr />
       <article>
         <time className="label_yellow">2022</time>
         <h2 className="label_yellow">タイトル</h2>

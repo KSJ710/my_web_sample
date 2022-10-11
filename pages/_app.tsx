@@ -15,7 +15,6 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   } else if (Component?.props?.authStatus === 'noAuthenticated') {
     return (
       <Base>
-        b
         <Component {...pageProps} />
       </Base>
     )

@@ -19,6 +19,10 @@ body {
     sans-serif;
 }
 
+h1 {
+  font-size: 40px;
+}
+
 @layer components {
   .label_yellow {
     @apply mb-1 block text-xl font-black text-accent underline decoration-[4px] decoration-main  underline-offset-4;

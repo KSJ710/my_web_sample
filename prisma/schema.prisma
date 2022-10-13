@@ -47,6 +47,7 @@ model Member {
   image             String?
   createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamptz
   updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  posts             Post[]
 
   @@map("members")
 }
@@ -94,7 +95,6 @@ model User {
   emailVerified DateTime? @map("email_verified")
   image         String?
   profile       Profile?
-  posts         Post[]
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz
@@ -135,12 +135,12 @@ model Post {
   linkPath  String   @map("link_path")
   imagePath String?  @map("image_path")
   published Boolean  @default(false)
-  authorId  String   @map("author_id")
+  authorId  Int      @map("author_id")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
   tags      PostBelongToTag[]
 
-  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author    Member  @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   @@map("posts")
 }

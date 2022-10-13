@@ -41,7 +41,6 @@ model User {
   emailVerified DateTime? @map("email_verified")
   image         String?
   profile       Profile?
-  posts         Post[]
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz

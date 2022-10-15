@@ -3,6 +3,15 @@ import axios from 'axios'
 // useSWRが受け取る関数でapiルートURLが渡される
 export const fetcher: Fetcher = (url: string) =>
   axios.get(url).then((res) => {
-    console.log(res.data)
     return res.data
   })
+
+// stringDate→yyyy/mm/dd
+export function stringDateToYmd(stringDate: string) {
+  let numberDate = Date.parse(stringDate)
+  let date = new Date(numberDate)
+  let yyyy = date.getFullYear()
+  let MM = ('00' + (date.getMonth() + 1)).slice(-2)
+  let dd = ('00' + date.getDate()).slice(-2)
+  return yyyy + ' / ' + MM + ' / ' + dd
+}

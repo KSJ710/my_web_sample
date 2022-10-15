@@ -5,11 +5,11 @@ import Link from 'next/link'
 export default function Login(): JSX.Element {
   return (
     <form action="" className="mx-auto mt-[32px] w-2/3 max-w-[320px]">
-      <label htmlFor="name" className="label_yellow">
+      <label htmlFor="name" className="font_yellow_underline_green">
         ユーザー名
       </label>
       <input type="text" name="name" className="mb-[24px] block w-full border-[1px] " />
-      <label htmlFor="password" className="label_yellow">
+      <label htmlFor="password" className="font_yellow_underline_green">
         パスワード
       </label>
       <input type="text" name="password" className="mb-[24px] block w-full border-[1px]" />

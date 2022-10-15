@@ -24,7 +24,7 @@ h1 {
 }
 
 @layer components {
-  .label_yellow {
+  .font_yellow_underline_green {
     @apply mb-1 block text-xl font-black text-accent underline decoration-[4px] decoration-main  underline-offset-4;
   }
 

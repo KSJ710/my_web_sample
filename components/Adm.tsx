@@ -5,10 +5,10 @@ import { useGetPost } from 'helpers/custom_hooks/posts'
 
 export default function Adm(): JSX.Element {
   return (
-    <article className="m-auto max-w-[80%] p-[48px]">
+    <article className="m-auto max-w-[80%] pt-[48px]">
       <h1>記事一覧</h1>
       <p>選択中タグ：</p>
-      <hr />
+      <hr className="my-[10px]" />
       <Posts />
     </article>
   )

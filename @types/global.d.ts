@@ -3,10 +3,10 @@ type Fetcher = (url: string) => Promise<any>
 type Post = {
   id: number
   title: string
-  linkPath: string
-  imagePath: string
+  linkPath: string | null
+  imagePath: string | null
   published: boolean
-  authId: number
+  authorId: number
   createdAt: Date
   updatedAt: Date
 }

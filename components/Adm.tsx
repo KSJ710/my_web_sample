@@ -1,6 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import Image from 'next/image'
-import { stringDateToYmd } from 'helpers/common'
+import { dummyImage, stringDateToYmd } from 'helpers/common'
 import { useGetPost } from 'helpers/custom_hooks/posts'
 
 export default function Adm(): JSX.Element {
@@ -22,8 +22,9 @@ function Posts() {
   return posts.map((post: any) => (
     <article key={post.id}>
       <li>
-        <time>{stringDateToYmd(post.updatedAt)}</time>
-        <h2>{post.title}</h2>
+        <time className="font_yellow_underline_green">{stringDateToYmd(post.updatedAt)}</time>
+        <Image loader={dummyImage} src="me.png" alt="Picture of the author" width={500} height={500} />
+        <h2 className="font_yellow_underline_green">{post.title}</h2>
         <div className="border_green"></div>
       </li>
     </article>

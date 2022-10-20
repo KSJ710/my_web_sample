@@ -21,3 +21,17 @@ type PostJson = {
   createdAt: string
   updatedAt: string
 }
+
+type Categories = {
+  id: number
+  name: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+type CategoryJson = {
+  id: number
+  name: string
+  createdAt: string
+  updatedAt: string
+}

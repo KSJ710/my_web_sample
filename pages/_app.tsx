@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
-import '../styles/globals.scss'
 import { SessionProvider } from 'next-auth/react'
 import Base from 'components/layout/Base'
+import '../styles/globals.scss'
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   if (Component?.props?.authStatus === 'authenticated') {

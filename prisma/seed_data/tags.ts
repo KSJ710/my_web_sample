@@ -1,2 +1,6 @@
-const mTags = [{ name: 'Javascript' }, { name: 'Ruby' }, { name: 'Python' }]
+const mTags = [
+  { name: 'Javascript', categoryId: 1 },
+  { name: 'Ruby', categoryId: 1 },
+  { name: 'Python', categoryId: 1 }
+]
 export default mTags

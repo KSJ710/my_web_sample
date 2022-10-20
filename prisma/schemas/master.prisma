@@ -5,19 +5,34 @@ model MRole {
   name      String
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
   users     User[]
 
   @@map("m_roles")
 }
 
 model MTag {
+  id          Int      @id @default(autoincrement())
+  name        String
+  categoryId  Int @map("category_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  posts       PostBelongToTag[]
+  tagCategory MTagCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("m_tags")
+}
+
+model MTagCategory {
   id        Int      @id @default(autoincrement())
   name      String
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
-  posts     PostBelongToTag[]
 
-  @@map("m_tags")
+  tags      MTag[]
+
+  @@map("m_tag_categories")
 }
 
 //******** master.prisma end *********

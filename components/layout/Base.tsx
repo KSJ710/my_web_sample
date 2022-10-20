@@ -1,11 +1,15 @@
+import { ReactNode } from 'react'
 import Head from './Head'
-import styles from './Base.module.scss'
 
-export default function Base(props: any): JSX.Element {
+type Props = {
+  children: ReactNode
+}
+
+export default function Base(props: Props): JSX.Element {
   return (
-    <div className="">
-      <Head />
-      <main>{props.children}</main>
+    <div>
+      <Head marginBottom="mb-[32px]" />
+      <main className="flex justify-center">{props.children}</main>
     </div>
   )
 }

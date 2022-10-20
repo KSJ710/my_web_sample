@@ -1,11 +1,11 @@
 import useSWR from 'swr'
 import { fetcher } from 'helpers/common'
 
-export function useGetPosts() {
-  const { data, error } = useSWR('/api/models/posts/index', fetcher)
+export function useGetCategories() {
+  const { data, error } = useSWR('/api/models/m_categories/index', fetcher)
 
   return {
-    posts: data,
+    categories: data,
     isLoading: !error && !data,
     isError: error
   }

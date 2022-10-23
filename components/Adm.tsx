@@ -10,15 +10,20 @@ export default function Adm(): JSX.Element {
 
   return (
     <article className="max-w-[80%]">
-      <h1 className="mb-[16px]">記事一覧</h1>
-      <p>選択中タグ：</p>
-      <hr className="my-[8px]" />
-      <Posts />
+      <div className="mb-[32px]">
+        <Categories />
+      </div>
+      <div>
+        <h1 className="mb-[16px]">記事一覧</h1>
+        <p>選択中タグ：</p>
+        <hr className="my-[8px]" />
+        <Posts />
+      </div>
     </article>
   )
 }
 
-function Posts() {
+function Posts(): JSX.Element {
   const { posts, isLoading, isError } = useGetPosts()
   if (isError) return <div>error</div>
   if (isLoading) return <div>loading...</div>
@@ -35,10 +40,25 @@ function Posts() {
   ))
 }
 
-function Categories() {
+function Categories(): JSX.Element {
   const { categories, isLoading, isError } = useGetCategories()
   if (isError) return <div>error</div>
   if (isLoading) return <div>loading...</div>
 
-  return categories.map((categories: CategoryJson) => <span key={categories.id}>{categories.name}</span>)
+  return categories.map((categories: CategoryJson) => (
+    <span key={categories.id} className="inline-block rounded-full bg-black p-2 text-[12px] text-white">
+      {replaceOverWordCount(categories.name)}
+    </span>
+  ))
+}
+
+function replaceOverWordCount(text: string): string {
+  const wordCount: number = text.length
+  const wordLimit: number = 16
+
+  if (wordCount >= wordLimit) {
+    let targetWord = text.slice(wordLimit, wordCount + 1)
+    return text.replace(targetWord, '...')
+  }
+  return text
 }

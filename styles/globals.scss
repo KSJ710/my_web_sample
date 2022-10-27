@@ -9,6 +9,7 @@ $main-color: #007B43;
 
 html,
 body {
+  width: 100%;
   padding: 0;
   margin: 0;
   font-family: "Helvetica Neue",
@@ -29,7 +30,7 @@ li {
 
 @layer components {
   .font_yellow_underline_green {
-    @apply mb-1 block font-black text-accent underline decoration-[4px] decoration-main  underline-offset-4;
+    @apply mb-3 block font-black text-accent underline decoration-[4px] decoration-main  underline-offset-4;
   }
 
   .border_green {

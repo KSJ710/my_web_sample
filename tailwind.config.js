@@ -14,9 +14,12 @@ module.exports = {
         main: '#007B43'
       }
     },
+    container: {
+      center: true
+    },
     screens: {
       sm: '540px',
-      // => @media (min-width: 640px) { ... }
+      // => @media (min-width: 540px) { ... }
 
       md: '768px',
       // => @media (min-width: 768px) { ... }
@@ -35,17 +38,9 @@ module.exports = {
       black: '#000000',
       main: '#007B43',
       accent: '#EDBA19',
+      subaccent: '#ED6447',
       success: '#119DAD',
       danger: '872225'
-    },
-    fontSize: {
-      sm: '0.8rem',
-      base: '1rem',
-      xl: '1.25rem',
-      '2xl': '1.5rem',
-      '3xl': '2rem',
-      '4xl': '2.5rem',
-      '5xl': '3rem'
     }
   },
   variants: {

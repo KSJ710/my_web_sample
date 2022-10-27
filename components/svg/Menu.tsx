@@ -1,8 +1,4 @@
-type Props = {
-  colorCode: string
-}
-
-export default function Menu(props: Props): JSX.Element {
+export default function Menu(): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +9,7 @@ export default function Menu(props: Props): JSX.Element {
       className="h-6 w-6"
     >
       <path
-        style={{ fill: props.colorCode }}
+        style={{ fill: '#EDBA19' }}
         stroke-linecap="round"
         stroke-linejoin="round"
         d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"

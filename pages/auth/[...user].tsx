@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import Adm from 'components/Adm'
+import Adm from 'components/main/Adm'
 import Component404 from 'components/Component404'
 
 export default function App(): JSX.Element {

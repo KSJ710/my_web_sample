@@ -15,7 +15,7 @@ export default function Adm(): JSX.Element {
         <h1 className="mb-[16px]">記事一覧</h1>
         <p>選択中タグ：</p>
         <hr className="my-[8px]" />
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           <Posts />
         </div>
       </div>

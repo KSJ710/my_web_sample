@@ -8,7 +8,7 @@ export default async function Posts(req: NextApiRequest, res: NextApiResponse) {
         res.status(200).json({ message: 'GET_SHOW' })
         break
       }
-      const posts: Post[] = await prisma.post.findMany()
+      const posts: Post[] = await prisma.post.findMany({})
       res.status(200).json(posts)
       break
 

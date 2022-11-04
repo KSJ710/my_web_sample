@@ -8,7 +8,7 @@ export default async function Categories(req: NextApiRequest, res: NextApiRespon
         res.status(200).json({ message: 'GET_SHOW' })
         break
       }
-      const categories: Categories[] = await prisma.mTagCategory.findMany()
+      const categories: Categories[] = await prisma.mTagCategory.findMany({})
       res.status(200).json(categories)
       break
 

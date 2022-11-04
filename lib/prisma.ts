@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+var colors = require('colors/safe')
 
 declare global {
   // allow global `var` declarations
@@ -28,10 +29,10 @@ export const prisma =
       }
     ]
   })
-prisma.$on('query', (e) => {
-  console.log('Query: ' + e.query)
-  console.log('Params: ' + e.params)
-  console.log('Duration: ' + e.duration + 'ms')
+prisma.$on('query', (e: any) => {
+  console.log('Query: ' + colors.green(e.query))
+  console.log('Params: ' + colors.cyan(e.params))
+  console.log('Duration: ' + colors.cyan(e.duration) + 'ms')
 })
 
 if (process.env.NODE_ENV !== 'production') global.prisma = prisma

@@ -1,5 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import Image from 'next/image'
+import dummy from './dummy.png'
 import { stringDateToYmd } from 'helpers/common'
 import { useGetPosts } from 'helpers/custom_hooks/posts'
 import { useGetCategories } from 'helpers/custom_hooks/categories'
@@ -9,41 +10,11 @@ export default function Adm(): JSX.Element {
   const [selectedTag, setSelectedTag] = useState(null)
 
   return (
-    <div className="p-2">
+    <div className="mt-[-32px] p-2">
       <Categories />
-      <article>
-        <div>
-          <h1 className="font_yellow_underline_green mb-[16px]">記事一覧</h1>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            <Posts />
-          </div>
-        </div>
-      </article>
+      <Posts />
     </div>
   )
-}
-
-function Posts(): JSX.Element {
-  const { posts, isLoading, isError } = useGetPosts()
-  if (isError) return <div>error</div>
-  if (isLoading) return <div>loading...</div>
-
-  return posts.map((post: PostJson) => (
-    <article key={post.id} className="">
-      <li>
-        <time className="font_yellow_underline_green mb-[8px] text-sm">{stringDateToYmd(post.updatedAt)}</time>
-        <Image
-          src="/images/dummy.png"
-          alt="Picture of the author"
-          width={250}
-          height={140}
-          layout="responsive"
-          className="py-1"
-        />
-        <h2 className="font_yellow_underline_green text-xl">{post.title}</h2>
-      </li>
-    </article>
-  ))
 }
 
 function Categories(): JSX.Element {
@@ -60,7 +31,30 @@ function Categories(): JSX.Element {
     </span>
   ))
 
-  return <div className="mt-[-28px] mb-[24px] flex gap-2 overflow-scroll whitespace-nowrap">{categoryList}</div>
+  return <div className="mb-[24px] flex gap-2 overflow-scroll whitespace-nowrap">{categoryList}</div>
+}
+
+function Posts(): JSX.Element {
+  const { posts, isLoading, isError } = useGetPosts()
+  if (isError) return <div>error</div>
+  if (isLoading) return <div>loading...</div>
+
+  const post_list = posts.map((post: PostJson) => (
+    <article key={post.id} className="">
+      <time className="font_yellow_underline_green mb-[8px] text-sm">{stringDateToYmd(post.updatedAt)}</time>
+      <Image src={dummy} alt="Picture of the author" className="py-1" />
+      <h2 className="font_yellow_underline_green text-xl">{post.title}</h2>
+    </article>
+  ))
+
+  return (
+    <article>
+      <div>
+        <h1 className="font_yellow_underline_green mb-[16px]">記事一覧</h1>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">{post_list}</div>
+      </div>
+    </article>
+  )
 }
 
 function replaceOverWordCount(text: string): string {

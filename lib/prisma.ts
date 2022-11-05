@@ -29,7 +29,7 @@ export const prisma =
       }
     ]
   })
-prisma.$on('beforeExit', (e: any) => {
+prisma.$on('query', (e: any) => {
   console.log('Query: ' + colors.green(e.query))
   console.log('Params: ' + colors.cyan(e.params))
   console.log('Duration: ' + colors.cyan(e.duration) + 'ms')

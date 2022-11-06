@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+'use client'
 
-export default function Index(): JSX.Element {
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+
+export default function Page(): JSX.Element {
   const router = useRouter()
   useEffect(() => {
     router.push('/auth/adm')

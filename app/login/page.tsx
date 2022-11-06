@@ -1,9 +1,9 @@
 import Login from 'components/main/Login'
 
-export default function App(): JSX.Element {
+export default function Page(): JSX.Element {
   return <Login />
 }
 
-App.props = {
+Page.props = {
   authStatus: 'noAuthenticated'
 }

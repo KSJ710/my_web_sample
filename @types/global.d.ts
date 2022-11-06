@@ -22,7 +22,7 @@ type PostJson = {
   updatedAt: string
 }
 
-type Categories = {
+type Category = {
   id: number
   name: string
   createdAt: Date

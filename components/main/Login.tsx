@@ -1,4 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+'use client'
 import Link from 'next/link'
 
 export default function Login(): JSX.Element {

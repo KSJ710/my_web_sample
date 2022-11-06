@@ -3,7 +3,7 @@ import { prisma } from 'lib/prisma'
 import Image from 'next/image'
 import dummy from 'public/images/dummy.png'
 
-export default async function Posts(): Promise<any> {
+export default async function Posts(): Promise<JSX.Element> {
   const posts: Post[] = await getPosts()
 
   const post_list = posts.map((post: Post) => (

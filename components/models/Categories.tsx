@@ -4,7 +4,7 @@ async function getCategories() {
   return await prisma.mTagCategory.findMany({})
 }
 
-export default async function Categories(): Promise<any> {
+export default async function Categories(): Promise<JSX.Element> {
   const categories: Category[] = await getCategories()
 
   const categoryList = categories.map((category: Category) => (

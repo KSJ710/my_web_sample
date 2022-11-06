@@ -30,10 +30,15 @@ li {
 
 @layer components {
   .font_yellow_underline_green {
-    @apply mb-3 block font-black text-accent underline decoration-[4px] decoration-main  underline-offset-4;
+    @apply mb-3 block  text-accent underline decoration-[4px] decoration-main  underline-offset-4;
+  }
+
+  .contents_center {
+    @apply flex items-center justify-center
   }
 
   .border_green {
     border-bottom: 1px solid $main-color;
   }
+
 }

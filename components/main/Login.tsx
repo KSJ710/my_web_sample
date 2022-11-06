@@ -1,4 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+'use client'
 import Link from 'next/link'
 
 export default function Login(): JSX.Element {
@@ -13,9 +14,7 @@ export default function Login(): JSX.Element {
       </label>
       <input type="text" name="password" className="mb-[24px] block w-full border-[1px] text-2xl" />
       <Link href="/auth">
-        <a>
-          <input type="submit" value="ログインする" className="bg-main p-[8px] text-lg text-accent" />
-        </a>
+        <input type="submit" value="ログインする" className="bg-main p-[8px] text-lg text-accent" />
       </Link>
     </form>
   )

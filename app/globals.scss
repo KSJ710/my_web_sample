@@ -30,7 +30,7 @@ li {
 
 @layer components {
   .font_yellow_underline_green {
-    @apply mb-3 block  text-accent underline decoration-[4px] decoration-main  underline-offset-4;
+    @apply mb-3 block  text-accent underline decoration-[6px] decoration-main  underline-offset-[6px];
   }
 
   .contents_center {

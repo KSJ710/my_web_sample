@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import Adm from './Adm'
-import Categories from 'components/dynamics/Categories'
-import Posts from 'components/dynamics/Posts'
+import Categories from 'components/fetches/Categories'
+import Posts from 'components/fetches/Posts'
 
 export default function Page() {
   return (

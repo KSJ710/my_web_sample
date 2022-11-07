@@ -1,6 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-'use client'
-import MenuButton from 'components/svg/Menu'
+import MenuButton from './svg/MenuButton'
 import React from 'react'
 
 type Props = {

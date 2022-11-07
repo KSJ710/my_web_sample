@@ -1,4 +1,4 @@
-export default function Menu(): JSX.Element {
+export default function MenuButton(): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

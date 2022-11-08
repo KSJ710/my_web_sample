@@ -24,7 +24,7 @@ export default async function Posts(): Promise<JSX.Element> {
   )
 }
 
-async function getPosts() {
+async function getPosts(): Promise<Post[]> {
   return await prisma.post.findMany({})
 }
 

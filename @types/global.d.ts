@@ -1,25 +1,21 @@
-type Fetcher = (url: string) => Promise<any>
-
-type Post = {
-  id: number
-  title: string
-  linkPath: string | null
-  imagePath: string | null
-  published: boolean
-  authorId: number
+type User = {
+  id: string
+  roleId: number
+  name: string
+  email: string
   createdAt: Date
   updatedAt: Date
 }
 
-type PostJson = {
+type Post = {
   id: number
   title: string
-  linkPath: string | null
+  linkPath: string
   imagePath: string | null
   published: boolean
-  authorId: number
-  createdAt: string
-  updatedAt: string
+  authorId: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 type Category = {
@@ -27,11 +23,4 @@ type Category = {
   name: string
   createdAt: Date
   updatedAt: Date
-}
-
-type CategoryJson = {
-  id: number
-  name: string
-  createdAt: string
-  updatedAt: string
 }

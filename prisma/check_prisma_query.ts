@@ -7,7 +7,7 @@ declare global {
   var prisma: PrismaClient | undefined
 }
 
-export const prisma = new PrismaClient({
+const prisma = new PrismaClient({
   log: [
     {
       emit: 'event',
@@ -34,8 +34,12 @@ prisma.$on('query', (e: any) => {
 })
 
 async function main() {
-  const a = await prisma.post.findMany({})
-  console.log(a)
+  const a = await prisma.user.findMany({
+    where: { roleId: 1, posts: { none: { title: 'aaa' } } },
+    select: { id: true }
+  })
+  console.log(typeof prisma)
+  type a = keyof PrismaClient
 }
 
 main()

@@ -1,3 +1,5 @@
+import { PrismaClient } from '@prisma/client'
+
 const mTagCategories = [
   { name: 'プログラミング言語' },
   { name: 'デザイン' },
@@ -7,4 +9,7 @@ const mTagCategories = [
   { name: 'フレームワーク' },
   { name: 'その他' }
 ]
-export default mTagCategories
+
+export default async function insertTagCategories(prisma: PrismaClient) {
+  await prisma.mTagCategory.createMany({ data: mTagCategories })
+}

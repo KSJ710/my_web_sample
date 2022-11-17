@@ -1,20 +1,21 @@
-import { PrismaClient } from '@prisma/client'
-import role from './seed_data/role'
-import members from './seed_data/members'
-import tagCategories from './seed_data/tag_categories'
-import tags from './seed_data/tags'
-import users from './seed_data/users'
-import posts from './seed_data/posts'
-
-const prisma = new PrismaClient()
+import { prisma } from 'lib/prisma_batch'
+import insertRoles from './seed_data/role'
+import insertMembers from './seed_data/members'
+import insertTagCategories from './seed_data/tag_categories'
+import insertTags from './seed_data/tags'
+import insertUsers from './seed_data/users'
+import insertPosts from './seed_data/posts'
 
 async function main() {
-  await prisma.mRole.createMany({ data: role })
-  await prisma.member.createMany({ data: members })
-  await prisma.mTagCategory.createMany({ data: tagCategories })
-  await prisma.mTag.createMany({ data: tags })
-  await prisma.user.createMany({ data: users })
-  await prisma.post.createMany({ data: posts })
+  await insertRoles(prisma).then(() => {
+    insertUsers(prisma).then(() => {
+      insertPosts(prisma)
+    })
+  })
+  insertMembers(prisma)
+  insertTagCategories(prisma).then(() => {
+    insertTags(prisma)
+  })
 }
 
 main()

@@ -1,15 +1,22 @@
 import { PrismaClient } from '@prisma/client'
+import { faker } from '@faker-js/faker'
+faker.locale = 'ja'
 
-const mTagCategories = [
-  { name: 'プログラミング言語' },
-  { name: 'デザイン' },
-  { name: 'ミドルウェア' },
-  { name: '制作手法' },
-  { name: '形式' },
-  { name: 'フレームワーク' },
-  { name: 'その他' }
-]
+const tags: MTagCategory[] = []
 
-export default async function insertTagCategories(prisma: PrismaClient) {
-  await prisma.mTagCategory.createMany({ data: mTagCategories })
+function createRandomUser(i: number): MTagCategory {
+  return {
+    id: i,
+    name: faker.random.word(),
+    createdAt: faker.date.past(10, new Date()),
+    updatedAt: faker.date.past(10, new Date())
+  }
+}
+
+export async function insertTagCategories(prisma: PrismaClient) {
+  Array.from({ length: 10 }).forEach((v: unknown, i: number) => {
+    i++
+    tags.push(createRandomUser(i))
+  })
+  await prisma.mTagCategory.createMany({ data: tags })
 }

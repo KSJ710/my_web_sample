@@ -1,21 +1,24 @@
 import { prisma } from 'lib/prisma_batch'
-import insertRoles from './seed_data/role'
-import insertMembers from './seed_data/members'
-import insertTagCategories from './seed_data/tag_categories'
-import insertTags from './seed_data/tags'
-import insertUsers from './seed_data/users'
-import insertPosts from './seed_data/posts'
+import { insertRoles } from './seed_data/role'
+import { insertUsers } from './seed_data/users'
+import { insertPosts } from './seed_data/posts'
+import { insertTagCategories } from './seed_data/tag_categories'
+import { insertTags } from './seed_data/tags'
+import { insertPostBelongToTags } from './seed_data/post_belong_to_tags'
+import { insertMembers } from './seed_data/members'
 
 async function main() {
-  await insertRoles(prisma).then(() => {
-    insertUsers(prisma).then(() => {
-      insertPosts(prisma)
-    })
+  Promise.all([
+    await insertRoles(prisma),
+    await insertUsers(prisma),
+    await insertPosts(prisma),
+    await insertTagCategories(prisma),
+    await insertTags(prisma)
+  ]).then(() => {
+    insertPostBelongToTags(prisma)
   })
-  insertMembers(prisma)
-  insertTagCategories(prisma).then(() => {
-    insertTags(prisma)
-  })
+
+  await insertMembers(prisma)
 }
 
 main()

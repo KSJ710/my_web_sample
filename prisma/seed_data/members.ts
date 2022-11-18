@@ -21,8 +21,9 @@ function createRandomUser(i: number): Member {
   }
 }
 
-export default async function insertMembers(prisma: PrismaClient) {
+export async function insertMembers(prisma: PrismaClient) {
   Array.from({ length: 10 }).forEach((v: unknown, i: number) => {
+    i++
     members.push(createRandomUser(i))
   })
   await prisma.member.createMany({ data: members })

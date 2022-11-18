@@ -17,15 +17,14 @@ function createRandomPost(i: number, userId: string): Post {
   }
 }
 
-export default async function insertPosts(prisma: PrismaClient) {
+export async function insertPosts(prisma: PrismaClient) {
   let users = await prisma.user.findMany({ where: { roleId: 1 } })
 
   Array.from({ length: 30 }).forEach((v: unknown, i: number) => {
-    var user: User = users[Math.floor(Math.random() * users.length)]
+    i++
+    let user: User = users[Math.floor(Math.random() * users.length)]
     posts.push(createRandomPost(i, user.id))
   })
 
-  await prisma.post.createMany({ data: posts }).then(() => {
-    prisma.$disconnect()
-  })
+  await prisma.post.createMany({ data: posts })
 }

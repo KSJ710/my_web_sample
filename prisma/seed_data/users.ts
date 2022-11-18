@@ -17,7 +17,7 @@ function createRandomUser(): User {
   }
 }
 
-export default async function insertUsers(prisma: PrismaClient) {
+export async function insertUsers(prisma: PrismaClient) {
   Array.from({ length: 10 }).forEach(() => {
     users.push(createRandomUser())
   })

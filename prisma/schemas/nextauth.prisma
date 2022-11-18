@@ -47,6 +47,7 @@ model User {
   updatedAt     DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
   role          MRole    @relation(fields: [roleId], references: [id])
+  posts         Post[]
   @@map("users")
 }
 

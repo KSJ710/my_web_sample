@@ -62,7 +62,6 @@ model Member {
   image             String?
   createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamptz
   updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
-  posts             Post[]
 
   @@map("members")
 }
@@ -116,6 +115,7 @@ model User {
   updatedAt     DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
   role          MRole    @relation(fields: [roleId], references: [id])
+  posts         Post[]
   @@map("users")
 }
 
@@ -150,12 +150,12 @@ model Post {
   linkPath  String   @map("link_path")
   imagePath String?  @map("image_path")
   published Boolean  @default(false)
-  authorId  Int      @map("author_id")
+  authorId  String   @map("author_id")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
   tags      PostBelongToTag[]
 
-  author    Member  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  author    User  @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   @@map("posts")
 }

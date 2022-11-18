@@ -12,10 +12,21 @@ CREATE TABLE "m_roles" (
 CREATE TABLE "m_tags" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
+    "category_id" INTEGER NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "m_tags_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "m_tag_categories" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "m_tag_categories_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -147,6 +158,9 @@ CREATE UNIQUE INDEX "verificationtokens_identifier_token_key" ON "verificationto
 
 -- CreateIndex
 CREATE UNIQUE INDEX "profiles_user_id_key" ON "profiles"("user_id");
+
+-- AddForeignKey
+ALTER TABLE "m_tags" ADD CONSTRAINT "m_tags_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "m_tag_categories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

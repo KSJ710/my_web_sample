@@ -339,6 +339,11 @@
     "minimatch" "^3.1.2"
     "strip-json-comments" "^3.1.1"
 
+"@faker-js/faker@^7.6.0":
+  "integrity" "sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw=="
+  "resolved" "https://registry.npmjs.org/@faker-js/faker/-/faker-7.6.0.tgz"
+  "version" "7.6.0"
+
 "@humanwhocodes/config-array@^0.11.6":
   "integrity" "sha512-kBbPWzN8oVMLb0hOUYXhmxggL/1cJE6ydvjDIGi9EnAGUyA7cLVKQg+d/Dsm+KZwx2czGHrCmMVLiyg8s5JPKw=="
   "resolved" "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.7.tgz"
@@ -4679,7 +4684,7 @@
   "resolved" "https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz"
   "version" "0.0.3"
 
-"ts-node@^10.9.1", "ts-node@>=9.0.0":
+"ts-node@>=9.0.0":
   "integrity" "sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw=="
   "resolved" "https://registry.npmjs.org/ts-node/-/ts-node-10.9.1.tgz"
   "version" "10.9.1"
@@ -4705,6 +4710,15 @@
   dependencies:
     "@types/json5" "^0.0.29"
     "json5" "^1.0.1"
+    "minimist" "^1.2.6"
+    "strip-bom" "^3.0.0"
+
+"tsconfig-paths@^4.1.0":
+  "integrity" "sha512-AHx4Euop/dXFC+Vx589alFba8QItjF+8hf8LtmuiCwHyI4rHXQtOOENaM8kvYf5fR0dRChy3wzWIZ9WbB7FWow=="
+  "resolved" "https://registry.npmjs.org/tsconfig-paths/-/tsconfig-paths-4.1.0.tgz"
+  "version" "4.1.0"
+  dependencies:
+    "json5" "^2.2.1"
     "minimist" "^1.2.6"
     "strip-bom" "^3.0.0"
 

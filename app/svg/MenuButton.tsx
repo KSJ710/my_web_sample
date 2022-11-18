@@ -1,4 +1,4 @@
-export default function Menu(): JSX.Element {
+export default function MenuButton(): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ export default function Menu(): JSX.Element {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="h-8 w-8"
+      className="h-12 w-12"
     >
       <path
         style={{ fill: '#EDBA19' }}

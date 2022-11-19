@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { resolve } from 'node:path/win32'
 var colors = require('colors/safe')
 
 declare global {
@@ -38,7 +39,7 @@ export default async function main() {
     where: { roleId: 1, posts: { none: { title: 'aaa' } } },
     select: { id: true }
   })
-  return 'ok'
+  return a
 }
 
 main()

@@ -33,13 +33,12 @@ prisma.$on('query', (e: any) => {
   console.log('Duration: ' + colors.cyan(e.duration) + 'ms')
 })
 
-async function main() {
+export default async function main() {
   const a = await prisma.user.findMany({
     where: { roleId: 1, posts: { none: { title: 'aaa' } } },
     select: { id: true }
   })
-  console.log(typeof prisma)
-  type a = keyof PrismaClient
+  return 'ok'
 }
 
 main()

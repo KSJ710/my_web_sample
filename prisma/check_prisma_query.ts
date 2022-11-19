@@ -39,7 +39,7 @@ export default async function main() {
     where: { roleId: 1, posts: { none: { title: 'aaa' } } },
     select: { id: true }
   })
-  return a
+  return 'ok'
 }
 
 main()

@@ -1,13 +1,9 @@
 import { prisma } from 'lib/prisma'
 
-async function getCategories() {
-  return await prisma.mTagCategory.findMany({})
-}
-
 export default async function Categories(): Promise<JSX.Element> {
-  const categories: Category[] = await getCategories()
+  const categories: MTagCategory[] = await prisma.mTagCategory.findMany({})
 
-  const categoryList = categories.map((category: Category) => (
+  const categoryList = categories.map((category: MTagCategory) => (
     <span
       key={category.id}
       className="inline-block border-2 border-solid border-main bg-accent px-2 py-1 text-xs text-white"

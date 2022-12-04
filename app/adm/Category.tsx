@@ -15,13 +15,13 @@ export default async function Categories(): Promise<JSX.Element> {
   return <div className="mb-[24px] flex gap-2 overflow-scroll whitespace-nowrap">{categoryList}</div>
 }
 
-function replaceOverWordCount(text: string): string {
+export function replaceOverWordCount(text: string): string {
   const wordCount: number = text.length
   const wordLimit: number = 16
 
   if (wordCount >= wordLimit) {
-    let targetWord = text.slice(wordLimit, wordCount + 1)
-    return text.replace(targetWord, '...')
+    let targetWord = text.substring(0, wordLimit - 1)
+    return targetWord + '...'
   }
 
   return text

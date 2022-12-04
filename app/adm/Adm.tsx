@@ -1,9 +1,9 @@
-type Propse = {
-  categories: Promise<JSX.Element>
-  posts: Promise<JSX.Element>
+type Props = {
+  categories: JSX.Element
+  posts: JSX.Element
 }
 
-export default function Adm(props: any): JSX.Element {
+export default function Adm(props: Props): JSX.Element {
   // const [selectedTag, setSelectedTag] = useState(null)
 
   return (

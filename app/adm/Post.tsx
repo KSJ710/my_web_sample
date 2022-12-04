@@ -3,8 +3,8 @@ import { prisma } from 'lib/prisma'
 import Image from 'next/image'
 import dummy from 'public/images/dummy.png'
 
-export default async function Posts(): Promise<JSX.Element> {
-  const posts: Post[] = await getPosts()
+export default async function Post(): Promise<JSX.Element> {
+  const posts: Post[] = await prisma.post.findMany({})
 
   const post_list = posts.map((post: Post) => (
     <article key={post.id} className="">
@@ -22,10 +22,6 @@ export default async function Posts(): Promise<JSX.Element> {
       </div>
     </article>
   )
-}
-
-async function getPosts(): Promise<Post[]> {
-  return await prisma.post.findMany({})
 }
 
 // stringDate→yyyy/mm/dd

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login render page unchanged 1`] = `
+<div>
+  <form
+    action=""
+    class="m-auto max-w-[368px] px-6"
+  >
+    <label
+      class="font_yellow_underline_green text-2xl"
+      for="name"
+    >
+      ユーザー名
+    </label>
+    <input
+      class="mb-[24px] block w-full border-[1px] text-2xl "
+      name="name"
+      type="text"
+    />
+    <label
+      class="font_yellow_underline_green text-2xl"
+      for="password"
+    >
+      パスワード
+    </label>
+    <input
+      class="mb-[24px] block w-full border-[1px] text-2xl"
+      name="password"
+      type="text"
+    />
+    <a
+      href="/adm"
+    >
+      <input
+        class="bg-main p-[8px] text-lg text-accent"
+        type="submit"
+        value="ログインする"
+      />
+    </a>
+  </form>
+</div>
+`;

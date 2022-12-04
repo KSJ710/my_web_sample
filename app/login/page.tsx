@@ -13,7 +13,7 @@ export default function Page(): JSX.Element {
         パスワード
       </label>
       <input type="text" name="password" className="mb-[24px] block w-full border-[1px] text-2xl" />
-      <Link href="/auth">
+      <Link href="/adm">
         <input type="submit" value="ログインする" className="bg-main p-[8px] text-lg text-accent" />
       </Link>
     </form>

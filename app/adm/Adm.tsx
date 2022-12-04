@@ -1,4 +1,9 @@
-export default function Adm(props: any): JSX.Element {
+type Props = {
+  categories: JSX.Element
+  posts: JSX.Element
+}
+
+export default function Adm(props: Props): JSX.Element {
   // const [selectedTag, setSelectedTag] = useState(null)
 
   return (

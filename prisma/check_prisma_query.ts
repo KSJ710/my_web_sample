@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { resolve } from 'node:path/win32'
 var colors = require('colors/safe')
 
 declare global {
@@ -33,13 +34,12 @@ prisma.$on('query', (e: any) => {
   console.log('Duration: ' + colors.cyan(e.duration) + 'ms')
 })
 
-async function main() {
+export default async function main() {
   const a = await prisma.user.findMany({
     where: { roleId: 1, posts: { none: { title: 'aaa' } } },
     select: { id: true }
   })
-  console.log(typeof prisma)
-  type a = keyof PrismaClient
+  return 'ok'
 }
 
 main()

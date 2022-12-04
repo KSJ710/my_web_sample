@@ -29,7 +29,7 @@ exports[`login render page unchanged 1`] = `
       type="text"
     />
     <a
-      href="/auth"
+      href="/adm"
     >
       <input
         class="bg-main p-[8px] text-lg text-accent"

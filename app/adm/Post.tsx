@@ -30,5 +30,5 @@ export function dateToYmd(date: Date) {
   var month = date.getMonth() + 1
   var day = date.getDate()
 
-  return ` ${year} / ${month} / ${day}`
+  return `${year} / ${month} / ${day}`
 }

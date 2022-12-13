@@ -1,10 +1,5 @@
 // 非同期コンポーネントのレンダリング出来ず
 import { replaceOverWordCount } from 'app/adm/Category'
-import { act } from 'react-dom/test-utils'
-
-beforeEach(() => {})
-
-afterEach(() => {})
 
 describe('auth/adm replaceOverWordCount', () => {
   it('fn short word', () => {

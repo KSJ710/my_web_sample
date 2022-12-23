@@ -1,4 +1,4 @@
-export function html({ url, host }) {
+export function html({ url, host }: { url: string; host: string }) {
   const escapedHost = `${host.replace(/\./g, '&#8203;.')}`
   const backgroundColor = '#f9f9f9'
   const textColor = '#444444'
@@ -33,6 +33,6 @@ export function html({ url, host }) {
 `
 }
 
-export function text({ url, host }) {
+export function text({ url, host }: { url: string; host: string }) {
   return `クリックしてログインができます ${host}\n${url}\n\n`
 }

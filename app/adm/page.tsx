@@ -3,6 +3,8 @@ import Adm from './Adm'
 import Category from './Category'
 import Post from './Post'
 
+export const revalidate = 10
+
 export default function Page(): JSX.Element {
   return (
     <Adm

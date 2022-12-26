@@ -3,8 +3,13 @@ import { prisma } from 'lib/prisma'
 import Image from 'next/image'
 import dummy from 'public/images/dummy.png'
 
+async function getPosts() {
+  const posts: Post[] = await prisma.post.findMany()
+  return posts
+}
+
 export default async function Post(): Promise<JSX.Element> {
-  const posts: Post[] = await prisma.post.findMany({})
+  const posts: Post[] = await getPosts()
 
   const post_list = posts.map((post: Post) => (
     <article key={post.id} className="">
